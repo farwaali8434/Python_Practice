@@ -12,12 +12,12 @@ def readfile(year, month='*'):
     files = glob.glob(f'files/Murree_weather_{year}_{month}.txt')
     for file in files:
         data_frame = pd.read_csv(f'{file}', sep=",", header=0)
-        for row in data_frame[['PKT', 'Max TemperatureC', 'Min TemperatureC', 'Max Humidity']].itertuples(index=True):
+        for row in data_frame[['PKT', 'Max TemperatureC', 'Min TemperatureC', 'Max Humidity', ' Mean Humidity']].itertuples(index=False):
             reading = utills.WeatherReading(row)
             row_reading.append(reading)
-        for one in row_reading:
-            print(one)
-        
+
+    for one in row_reading:
+        print(one.date)
         
 def monthly_reading(filename):
     line_list = [line.rstrip('\n') for line in open(f'files/{filename}')]
