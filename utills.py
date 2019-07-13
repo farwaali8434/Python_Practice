@@ -1,33 +1,42 @@
-import datetime
 import glob
-import pandas as pd
+from csv import DictReader
 
 
 class WeatherReading:
     
     def __init__(self, row):
-        self.date = row[0]
-        self.highest_temp = row[1]
-        self.lowest_temp = row[2]
-        self.max_humidity = row[3]
-        self.mean_humidity = row[4]
+        self.date = row['PKT']
+        self.highest_temp = row['Max TemperatureC']
+        self.lowest_temp = row['Min TemperatureC']
+        self.max_humidity = row['Max Humidity']
+        self.mean_humidity = row[' Mean Humidity']
         
      
 class ReadingStorage:
     row_reading = []
-    def __init__(self, year, month='*'):
+    
+    def __init__(self, year=2004, month='Aug'):
         files = glob.glob(f'files/Murree_weather_{year}_{month}.txt')
         for file in files:
-            data_frame = pd.read_csv(f'{file}', sep=",", header=0)
-            for row in data_frame[
-                ['PKT', 'Max TemperatureC', 'Min TemperatureC', 'Max Humidity', ' Mean Humidity']].itertuples(
-                    index=False):
+            data_frame = DictReader(open(file))
+            for row in data_frame:
                 self.row_reading.append(WeatherReading(row))
+                
+    def calculations(row_reading):
+        maxx = max(row_reading[WeatherReading().highest_temp])
+        print(maxx)
     
+        
+class Reporter:
+    def __init__(self):
+        pass
 
-
-class ReadingCalculator:
+    def reporter_with_month(self):
+        print(f"Highest: {45}C on {'June'} {23}\n"
+              f"Lowest: {1}C on {'December'} {22}\n"
+              f"Humidity: {95}% on {'August'} {14}")
     
-    def calculating_max(self, list):
-        return max(list)
-    
+    def reporter_with_years(self):
+        print(f"""Highest Average: {39}C
+                  Lowest Average: {18}C
+                  Average Mean Humidity: {71}%""")

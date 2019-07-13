@@ -1,9 +1,12 @@
-import reading_files, argparse, utills
+import reading_files
+import utills
 
-# filename = input('file name: ')
-# year, month = reading_files.converting_date(filename)
-# reading_files.readfile(year, month)
-
+reading_files.parsing_files_with_year()
 reading_files.parsing_files_with_months()
-# reading_files.parsing_files_with_year()
-
+#
+# report = utills.Reporter()
+# report.reporter_with_month()
+# report.reporter_with_years()
+# var = utills.ReadingStorage()
+# var1 = var.row_reading
+# print(var1)
