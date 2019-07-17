@@ -8,7 +8,7 @@ def converting_date(filename):
     given = filename.split('/')
     month_name = datetime.datetime(year=int(given[0]),month=int(given[1]),day = 1)
     return month_name.year, month_name.strftime('%b')
-    
+
     
 def parsing_files_with_months():
     parser = argparse.ArgumentParser()
