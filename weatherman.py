@@ -1,14 +1,12 @@
 import argparse
-import termgraph
 import reading_files
 import utills
-
 
 if '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', help='file selected with year and months')
     parser.add_argument('-e', help='files selected  with year only')
-    parser.add_argument('-c', help = 'visual reporting of monthly weather')
+    parser.add_argument('-c', help='visual reporting of monthly weather')
     args = parser.parse_args()
     if args.e:
         stored_readings = utills.ReadingStorage(year=args.e)
@@ -25,4 +23,3 @@ if '__main__':
         report = utills.Reporter(stored_readings)
         report.monthly_separate_barcharts()
         report.monthly_collected_barcharts()
-    
